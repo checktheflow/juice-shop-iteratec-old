@@ -7,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     difficulty: DataTypes.INTEGER,
     hint: DataTypes.STRING,
     hintUrl: DataTypes.STRING,
-    solved: DataTypes.BOOLEAN
+    solved: DataTypes.BOOLEAN,
+    country: DataTypes.STRING,
+    countryCode: DataTypes.STRING
   })
   return Challenge
 }

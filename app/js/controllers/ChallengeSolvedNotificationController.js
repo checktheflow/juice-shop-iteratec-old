@@ -24,6 +24,7 @@ angular.module('juiceShop').controller('ChallengeSolvedNotificationController', 
           $scope.notifications.push({
             message: message,
             flag: challenge.flag,
+            country: challenge.country,
             copied: false
           })
         })
