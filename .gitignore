@@ -16,6 +16,9 @@ out/
 # VIM swap files
 *.swp
 
+# Vs Code
+.vscode/
+
 # Orig from merges
 *.orig
 
@@ -89,3 +92,4 @@ config/*.yml
 !config/sickshop.yml
 !config/juicebox.yml
 !config/quiet.yml
+!config/test.yml
