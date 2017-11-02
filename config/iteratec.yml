@@ -1,0 +1,101 @@
+application:
+  name: "Smoothie Shop"
+  logo: "JuiceShopCTF_Logo.png"
+  favicon: "favicon_ctf.ico"
+  showCtfFlagsInNotifications: true
+  showChallengeHints: false
+  showGitHubRibbon: false
+  showVersionNumber: false
+  twitterUrl: "https://twitter.com/iteratec"
+  facebookUrl: "https://www.facebook.com/iteratecGmbH/"
+products:
+  - name: "Apple Juice (1000ml)"
+    price: 1.99
+    description: "The all-time classic."
+    image: "apple_juice.jpg"
+    reviews:
+      - text: 'One of my favorites!'
+        author: 'admin' # Options: admin, jim, bender, ciso, support
+  - name: 'Orange Juice (1000ml)'
+    description: 'Made from oranges hand-picked by Uncle Dittmeyer.'
+    price: 2.99
+    image: 'orange_juice.jpg'
+  - name: 'Eggfruit Juice (500ml)'
+    description: 'Now with even more exotic flavour.'
+    price: 8.99
+    image: 'eggfruit_juice.jpg'
+    reviews:
+      - text: 'I bought it, would buy again. 5/7'
+        author: 'admin'
+  - name: 'Raspberry Juice (1000ml)'
+    description: 'Made from blended Raspberry Pi, water and sugar.'
+    price: 4.99
+    image: 'raspberry_juice.jpg'
+  - name: 'Lemon Juice (500ml)'
+    description: 'Sour but full of vitamins.'
+    price: 2.99
+    image: 'lemon_juice.jpg'
+  - name: 'Banana Juice (1000ml)'
+    description: 'Monkeys love it the most.'
+    price: 1.99
+    image: 'banana_juice.jpg'
+    reviews:
+      - text: 'Fry liked it too.'
+        author: 'bender'
+  - name: 'Christmas Super-Surprise-Box (2014 Edition)'
+    description: 'Contains a random selection of 10 bottles (each 500ml) of our tastiest juices and an extra fan shirt (3XL) for an unbeatable price!'
+    price: 29.99
+    image: 'undefined.jpg'
+    useForChristmasSpecialChallenge: true
+  - name: 'Woodruff Syrup "Forest Master X-Treme"'
+    description: 'Harvested and manufactured in the Black Forest, Germany. Can cause hyperactive behavior in children. Can cause permanent green tongue when consumed undiluted.'
+    price: 6.99
+    image: 'woodruff_syrup.jpg'
+    useForProductTamperingChallenge: true
+  - name: 'Green Smoothie'
+    description: 'Looks poisonous but is actually very good for your health! Made from green cabbage, spinach, kiwi and grass.'
+    price: 1.99
+    image: 'green_smoothie.jpg'
+    reviews:
+      - text: 'Fresh out of a replicator.'
+        author: 'jim'
+  - name: 'Quince Juice (1000ml)'
+    description: 'Juice of the <em>Cydonia oblonga</em> fruit. Not exactly sweet but rich in Vitamin C.'
+    price: 4.99
+    image: 'quince.jpg'
+  - name: 'Apple Pomace'
+    description: 'Finest pressings of apples. Allergy disclaimer: Might contain traces of worms. Can be <a href="/#reccyle">sent back to us</a> for recycling.'
+    price: 0.89
+    image: 'apple_pressings.jpg'
+  - name: 'Fruit Press'
+    description: 'Fruits go in. Juice comes out. Pomace you can send back to us for recycling purposes.'
+    price: 89.99
+    image: 'fruit_press.jpg'
+  - name: 'Enhanced White Rafford`s Decoction'
+    description: 'Immediately restores a large portion of Vitality.'
+    price: 150
+    image: 'white_raffards.jpg'
+    reviews:
+      - text: 'A vital ingredient for a succesful playthrough.'
+        author: 'jim'
+  - name: 'Global OWASP WASPY Award 2017 Nomnation'
+    description: 'Your chance to nominate up to three quiet pillars of the OWASP community ends 2017-06-30! <a href="https://www.owasp.org/index.php/WASPY_Awards_2017">Nominate now!</a>'
+    price: 0.03
+    image: 'waspy.png'
+    deletedDate: '2017-07-01'
+  - name: 'Melon Bike'
+    description: 'The wheels of this bicycle are made from real water melons.'
+    price: 1999
+    image: 'melon_bike.jpeg'
+  - name: 'Strawberry Juice (500ml)'
+    description: 'Sweet & tasty!'
+    price: 3.99
+    image: 'strawberry_juice.jpeg'
+  - name: 'Carrot Juice (1000ml)'
+    description: 'As the old German saying goes: "Carrots are good for the eyes. Or has anyone ever seen a rabbit with glasses?"'
+    price: 2.99
+    image: 'carrot_juice.jpeg'
+  - name: 'Jawa Script T-Shirt'
+    description: 'Brilliant. Just brilliant. You can actually purchase it for real <a href="https://www.teepublic.com/t-shirt/1252931-jawa-script" target="_blank">over here</a>.'
+    price: 20
+    image: 'jawa_script.jpg'
