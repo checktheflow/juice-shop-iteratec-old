@@ -51,7 +51,6 @@ products:
     description: 'Harvested and manufactured in the Black Forest, Germany. Can cause hyperactive behavior in children. Can cause permanent green tongue when consumed undiluted.'
     price: 6.99
     image: 'woodruff_syrup.jpg'
-    useForProductTamperingChallenge: true
   - name: 'Green Smoothie'
     description: 'Looks poisonous but is actually very good for your health! Made from green cabbage, spinach, kiwi and grass.'
     price: 1.99
@@ -71,6 +70,11 @@ products:
     description: 'Fruits go in. Juice comes out. Pomace you can send back to us for recycling purposes.'
     price: 89.99
     image: 'fruit_press.jpg'
+  - name: 'OWASP SSL Advanced Forensic Tool (O-Saft)'
+    description: 'O-Saft is an easy to use tool to show information about SSL certificate and tests the SSL connection according given list of ciphers and various SSL configurations.'
+    price: 0.01
+    image: 'owasp_osaft.jpg'
+    useForProductTamperingChallenge: true
   - name: 'Enhanced White Rafford`s Decoction'
     description: 'Immediately restores a large portion of Vitality.'
     price: 150
