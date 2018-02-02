@@ -4,8 +4,8 @@ application:
   favicon: "favicon_ctf.ico"
   showCtfFlagsInNotifications: true
   showChallengeHints: false
-  showGitHubRibbon: false
   showVersionNumber: false
+  gitHubRibbon: none
   twitterUrl: "https://twitter.com/iteratec"
   facebookUrl: "https://www.facebook.com/iteratecGmbH/"
 products:
@@ -103,3 +103,8 @@ products:
     description: 'Brilliant. Just brilliant. You can actually purchase it for real <a href="https://www.teepublic.com/t-shirt/1252931-jawa-script" target="_blank">over here</a>.'
     price: 20
     image: 'jawa_script.jpg'
+  - name: 'Shop Logo (3D-printed)'
+    description: 'This rare item was designed and handcrafted in Sweden. This is why it is so incredibly expensive despite its complete lack of purpose.'
+    price: 99.99
+    image: '3d_keychain.jpg' # Exif metadata contains "OpenSCAD" as subtle hint...
+    fileForRetrieveBlueprintChallenge: 'JuiceShop.stl' # ...to blueprint file type

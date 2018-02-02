@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/bkimminich/juice-shop.svg?branch=master)](https://travis-ci.org/bkimminich/juice-shop)
 [![Build status](https://ci.appveyor.com/api/projects/status/903c6mnns4t7p6fa/branch/master?svg=true)](https://ci.appveyor.com/project/bkimminich/juice-shop/branch/master)
-[![Test Coverage](https://codeclimate.com/github/bkimminich/juice-shop/badges/coverage.svg)](https://codeclimate.com/github/bkimminich/juice-shop)
-[![Code Climate](https://codeclimate.com/github/bkimminich/juice-shop/badges/gpa.svg)](https://codeclimate.com/github/bkimminich/juice-shop)
-[![bitHound Overall Score](https://www.bithound.io/github/bkimminich/juice-shop/badges/score.svg)](https://www.bithound.io/github/bkimminich/juice-shop)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2a7af720d39b08a09904/test_coverage)](https://codeclimate.com/github/bkimminich/juice-shop/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2a7af720d39b08a09904/maintainability)](https://codeclimate.com/github/bkimminich/juice-shop/maintainability)
+[![Greenkeeper badge](https://badges.greenkeeper.io/bkimminich/juice-shop-ctf.svg)](https://greenkeeper.io/)
 
 > [The most trustworthy online shop out there.](https://twitter.com/dschadow/status/706781693504589824)
 > ([@dschadow](https://github.com/dschadow)) —
@@ -20,7 +20,7 @@ severe security flaws.
 
 For a detailed introduction, full list of features and architecture
 overview please visit the official project page:
-<https://www.owasp.org/index.php/OWASP_Juice_Shop_Project>
+<http://owasp-juice.shop>
 
 ## Setup
 
@@ -48,7 +48,7 @@ overview please visit the official project page:
 5. Run `npm start`
 6. Browse to <http://localhost:3000>
 
-### Docker Container [![Docker Automated build](https://img.shields.io/docker/automated/bkimminich/juice-shop.svg)](https://registry.hub.docker.com/u/bkimminich/juice-shop/) [![Docker Pulls](https://img.shields.io/docker/pulls/bkimminich/juice-shop.svg)](https://registry.hub.docker.com/u/bkimminich/juice-shop/) [![](https://images.microbadger.com/badges/image/bkimminich/juice-shop.svg)](https://microbadger.com/images/bkimminich/juice-shop "Get your own image badge on microbadger.com")
+### Docker Container [![Docker Automated build](https://img.shields.io/docker/automated/bkimminich/juice-shop.svg)](https://registry.hub.docker.com/u/bkimminich/juice-shop/) [![Docker Pulls](https://img.shields.io/docker/pulls/bkimminich/juice-shop.svg)](https://registry.hub.docker.com/u/bkimminich/juice-shop/) [![](https://images.microbadger.com/badges/image/bkimminich/juice-shop.svg)](https://microbadger.com/images/bkimminich/juice-shop "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/bkimminich/juice-shop.svg)](https://microbadger.com/images/bkimminich/juice-shop "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/bkimminich/juice-shop.svg)](https://microbadger.com/images/bkimminich/juice-shop "Get your own commit badge on microbadger.com")
 
 1. Install [Docker](https://www.docker.com)
 2. Run `docker pull bkimminich/juice-shop`
@@ -143,10 +143,10 @@ images and packaged distributions are offered accordingly:
 | __8.x__ | __`latest`__ (current official release), `snapshot` (preview from `develop` branch) | `juice-shop-<version>_node8_windows_x64.zip`, `juice-shop-<version>_node8_linux_x64.tgz` |
 | 6.x     |                                                                                     | `juice-shop-<version>_node6_windows_x64.zip`, `juice-shop-<version>_node6_linux_x64.tgz` |
 
-## Preview [![Heroku](https://heroku-badge.herokuapp.com/?app=juice-shop)](https://juice-shop.herokuapp.com)
+## Demo [![Heroku](https://heroku-badge.herokuapp.com/?app=juice-shop)](http://demo.owasp-juice.shop)
 
 Feel free to have a look at the latest version of OWASP Juice Shop:
-<https://juice-shop.herokuapp.com>
+<http://demo.owasp-juice.shop>
 
 > This is a deployment-test and sneak-peek instance only! You are __not
 > supposed__ to use this instance for your own hacking endeavours! No
@@ -234,9 +234,10 @@ forking and opening a Pull Request!
   some swag (Shirts, Hoodies, Mugs) with the official OWASP Juice Shop
   logo
 * On
-  [Stickermule.com](https://www.stickermule.com/user/1070702817/stickers)
-  you can get four variants of the OWASP Juice Shop logo to decorate
-  your laptop
+  [StickerYou.com](https://www.stickeryou.com/products/owasp-juice-shop/794)
+  you can get variants of the OWASP Juice Shop logo as single stickers
+  to decorate your laptop with. They can also print magnets, iron-ons,
+  sticker sheets and temporary tattoos.
 
 The most honorable way to get some stickers is to
 [contribute to the project](https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part3/contribution.html)
@@ -255,57 +256,111 @@ your plans! !
 ### PayPal [![PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40owasp%2eorg&lc=BM&item_name=OWASP%20Juice%20Shop%20Project&item_number=OWASP%20Foundation&no_note=0&currency_code=USD&bn=PP%2dDonationsBF)
 
 PayPal donations via above button go to the OWASP Foundations and are
-earmarked for "Juice Shop". This is the preferred way to support the
-project.
+earmarked for "Juice Shop". This is the preferred and most convenient
+way to support the project.
 
-### Others
+### Credit Card (through RegOnline)
 
-[![Flattr](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/thing/3856930/bkimminichjuice-shop-on-GitHub)
-[![Gratipay](http://img.shields.io/gratipay/team/juice-shop.svg)](https://gratipay.com/juice-shop)
+OWASP hosts a
+[donation form on RegOnline](https://www.regonline.com/Register/Checkin.aspx?EventID=1044369).
+Refer to the
+[Credit card donation step-by-step](https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part3/donations.html#credit-card-donation-step-by-step)
+guide for help with filling out the donation form correctly.
+
+### Crypto Currency
 
 [![Bitcoin](https://img.shields.io/badge/bitcoin-1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm-orange.svg)](https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm)
 [![Dash](https://img.shields.io/badge/dash-Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW-blue.svg)](https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW)
 [![Ether](https://img.shields.io/badge/ether-0x0f933ab9fcaaa782d0279c300d73750e1311eae6-lightgrey.svg)](https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6)
 
-## Credits
+## Contributors
+
+### Collaborators
+
+- [Björn Kimminich](https://github.com/bkimminich) aka `bkimminich`
+  (Project Leader)
+- [Jannik Hollenbach](https://github.com/J12934) aka `J12934`
+- [Timo Pagel](https://github.com/wurstbrot) aka `wurstbrot`
+
+### Code Contributors
+
+Based on [GitHub](https://github.com/bkimminich/juice-shop) commits.
+Ordered by added lines of code as of Sun, 12 Jan 2018 on `master`.
+
+- [Viktor Lindström](https://github.com/ViktorLindstrm) aka
+  `ViktorLindstrm`
+- [Josh Grossman](https://github.com/tghosth) aka `tghosth`
+- [Manabu Niseki](https://github.com/ninoseki) aka `ninoseki`
+- [Gorka Vicente](https://github.com/gorkavicente) aka `gorkavicente`
+- [Alvaro Viebrantz](https://github.com/alvarowolfx) aka `alvarowolfx`
+- [Omer Levi Hevroni](https://github.com/omerlh) aka `omerlh`
+- [m4l1c3](https://github.com/m4l1c3) aka `m4l1c3`
+- [Johanna A](https://github.com/yuhama) aka `yuhama`
+- [Aaron Edwards](https://github.com/aaron-m-edwards) aka
+  `aaron-m-edwards`
+- [Stephen OBrien](https://github.com/stephenobrien) aka `stephenobrien`
+- [Jln Wntr](https://github.com/JlnWntr) aka `JlnWntr`
+- [Greg Guthe](https://github.com/g-k) aka `g-k`
+- [Abhishek bundela](https://github.com/abhishekbundela) aka
+  `abhishekbundela`
+- [Achim Grimm](https://github.com/achimgrimm) aka `achimgrimm`
+- [battletux](https://github.com/battletux) aka `battletux`
+- [Ingo Bente](https://github.com/ingben) aka `ingben`
+- [Simon De Lang](https://github.com/simondel) aka `simondel`
+- [AviD](https://github.com/avidouglen) aka `avidouglen`
+- [Yuvraj](https://github.com/evalsocket) aka `evalsocket`
+- [Stuart Winter-Tear](https://github.com/StuartWinterTear) aka
+  `StuartWinterTear`
+- [Christian Kühn](https://github.com/cy4n) aka `cy4n`
+- [Dinis Cruz](https://github.com/DinisCruz) aka `DinisCruz`
+- [Joe Butler](https://github.com/incognitjoe) aka `incognitjoe`
+
+### Translators
+
+Based on [CrowdIn](https://crowdin.com/project/owasp-juice-shop)
+translations and commits to `app/i18n`. Grouped by language as of Mon,
+07 Jan 2018 on `master`.
+
+- :cn: Coink, rToxic
+- :czech_republic: Martin Hartl, stejkenzie
+- :denmark: Allan Kimmer Jensen, owangen
+- :estonia: bmoritz
+- :fr: Kylian Runembert, vientspam
+- :de: Björn Kimminich
+- :hungary: OliverkeHU
+- :indonesia: adeyosemanputra, bahrunghozali, kahfiehudson, Mohammad
+  Febri Ramadlan, Rick Daalhuizen, Syahrol
+- :israel: AviD, Omer Levi Hevroni
+- :it: vientspam
+- :jp: ninoseki
+- :myanmar: thinbashane
+- :netherlands: Bart Decker, Daan Sprenkels, Manu B, rachidbm,
+  vientspam, Wout Huygens, Rick Daalhuizen
+- :norway: owangen
+- :poland: Idomin Ninja, Andrew Pio
+- :portugal: Alvaro Viebrantz
+- :romania: Mircea Ulmeanu, orjen, timexlord
+- :ru: fieldhill13
+- :es: alopezhu, CarlCampbell, Carlos Allendes, Ezequiel Andino,
+  mateomartinez, soledad aro, Gorka Vicente
+- :sweden: Anders Lindberg, atteism, cello-anders, Klas Fahlberg,
+  landinl, Mattias Persson, Pär Swedberg
+- :tr: Ender Çulha
+
+### Special Thanks
 
 * Inspired by the "classic"
   [BodgeIt Store](https://github.com/psiinon/bodgeit) by
   [@psiinon](https://github.com/psiinon)
 * Revised OWASP Juice Shop and Juice Shop CTF logo artworks by Emily
   Gundry (courtesy of [@SecureState](https://github.com/SecureState))
-
-## Contributors
-
-Ordered by date of first contribution.
-[Auto-generated](https://github.com/dtrejo/node-authors) on Fri, 16 Jun
-2017 11:20:02 GMT.
-
-- [Björn Kimminich](https://github.com/bkimminich) aka `bkimminich`
-- [Bitdeli Chef](https://github.com/bitdeli-chef) aka `bitdeli-chef`
-- [The Gitter Badger](https://github.com/gitter-badger) aka
-  `gitter-badger`
-- [Aaron Edwards](https://github.com/aaron-m-edwards) aka
-  `aaron-m-edwards`
-- [Dinis Cruz](https://github.com/DinisCruz) aka `DinisCruz`
-- [Timo Pagel](https://github.com/wurstbrot) aka `wurstbrot`
-- [Gorka Vicente](https://github.com/gorkavicente) aka `gorkavicente`
-- [Alvaro Viebrantz](https://github.com/alvarowolfx) aka `alvarowolfx`
-- [Johanna A](https://github.com/yuhama) aka `yuhama`
-- [Stephen OBrien](https://github.com/stephenobrien) aka `stephenobrien`
-- [Joe Butler](https://github.com/joelicious) aka `joelicious`
-- [Abhishek bundela](https://github.com/abhishekbundela) aka
-  `abhishekbundela`
-- [ninoseki](https://github.com/ninoseki)
-- [Jannik Hollenbach](https://github.com/J12934) aka `J12934`
-- [Viktor Lindström](https://github.com/ViktorLindstrm) aka
-  `ViktorLindstrm`
-- [Achim Grimm](https://github.com/achimgrimm) aka `achimgrimm`
+* [Pwning OWASP Juice Shop](https://leanpub.com/juice-shop) cover
+  artwork by [Patch Kroll](https://99designs.de/profiles/3099878)
 
 ## Licensing [![license](https://img.shields.io/github/license/bkimminich/juice-shop.svg)](LICENSE) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fbkimminich%2Fjuice-shop.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fbkimminich%2Fjuice-shop?ref=badge_shield)
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the [MIT license](LICENSE). OWASP Juice Shop and any
-contributions are Copyright © by Bjoern Kimminich 2014-2017.
+contributions are Copyright © by Bjoern Kimminich 2014-2018.
 
 ![Juice Shop Logo](https://raw.githubusercontent.com/bkimminich/juice-shop/master/app/public/images/JuiceShop_Logo.png)

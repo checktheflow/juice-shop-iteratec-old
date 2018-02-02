@@ -15,6 +15,9 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const multer = require('multer')
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 200000 } })
+const yaml = require('js-yaml')
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = yaml.load(fs.readFileSync('./swagger.yml', 'utf8'))
 const fileUpload = require('./routes/fileUpload')
 const redirect = require('./routes/redirect')
 const angular = require('./routes/angular')
@@ -37,6 +40,7 @@ const coupon = require('./routes/coupon')
 const basket = require('./routes/basket')
 const order = require('./routes/order')
 const verify = require('./routes/verify')
+const b2bOrder = require('./routes/b2bOrder')
 const utils = require('./lib/utils')
 const insecurity = require('./lib/insecurity')
 const models = require('./models')
@@ -108,12 +112,15 @@ app.use('/ftp/:file', fileServer())
 app.use('/encryptionkeys', serveIndex('encryptionkeys', { 'icons': true, 'view': 'details' }))
 app.use('/encryptionkeys/:file', keyServer())
 
+/* Swagger documentation for B2B v2 endpoints */
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
 app.use(express.static(applicationRoot + '/app'))
 app.use(cookieParser('kekse'))
 app.use(bodyParser.json())
 
 /* HTTP request logging */
-let accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})
+let accessLogStream = require('file-stream-rotator').getStream({filename: './access.log', frequency: 'daily', verbose: false, max_logs: '2d'})
 app.use(morgan('combined', {stream: accessLogStream}))
 
 /** Authorization **/
@@ -157,8 +164,10 @@ app.use('/api/SecurityAnswers/:id', insecurity.denyAll())
 app.use('/rest/user/authentication-details', insecurity.isAuthorized())
 app.use('/rest/basket/:id', insecurity.isAuthorized())
 app.use('/rest/basket/:id/order', insecurity.isAuthorized())
-/* Challenge evaluation before sequelize-restful takes over */
+/* Challenge evaluation before epilogue takes over */
 app.post('/api/Feedbacks', verify.forgedFeedbackChallenge())
+/* Unauthorized users are not allowed to access B2B API */
+app.use('/b2b/v2', insecurity.isAuthorized())
 
 /* Verifying DB related challenges can be postponed until the next request for challenges is coming via sequelize-restful */
 app.use(verify.databaseRelatedChallenges())
@@ -176,8 +185,8 @@ for (const modelName of autoModels) {
     endpoints: [`/api/${modelName}s`, `/api/${modelName}s/:id`]
   })
 
+  // fix the api difference between epilogue and previously used sequlize-restful
   resource.all.send.before(function (req, res, context) {
-    // TODO This appears to be the easiest way to fix the api difference between sequlize-restful and epilogue
     context.instance = {
       status: 'success',
       data: context.instance
@@ -209,6 +218,9 @@ app.get('/rest/continue-code', continueCode())
 app.put('/rest/continue-code/apply/:continueCode', restoreProgress())
 app.get('/rest/admin/application-version', appVersion())
 app.get('/redirect', redirect())
+/* B2B Order API */
+app.post('/b2b/v2/orders', b2bOrder())
+
 /* File Upload */
 app.post('/file-upload', upload.single('file'), fileUpload())
 /* File Serving */
@@ -220,59 +232,6 @@ app.use(verify.errorHandlingChallenge())
 app.use(errorhandler())
 
 exports.start = function (readyCallback) {
-  function registerWebsocketEvents () {
-    io.on('connection', socket => {
-      // notify only first client to connect about server start
-      if (firstConnectedSocket === null) {
-        socket.emit('server started')
-        firstConnectedSocket = socket.id
-      }
-
-      // send all outstanding notifications on (re)connect
-      notifications.forEach(notification => {
-        socket.emit('challenge solved', notification)
-      })
-
-      socket.on('notification received', data => {
-        const i = notifications.findIndex(element => element.flag === data)
-        if (i > -1) {
-          notifications.splice(i, 1)
-        }
-      })
-    })
-  }
-
-  function populateIndexTemplate () {
-    fs.copy('app/index.template.html', 'app/index.html', { overwrite: true }, () => {
-      if (config.get('application.logo')) {
-        let logo = config.get('application.logo')
-        if (utils.startsWith(logo, 'http')) {
-          const logoPath = logo
-          logo = decodeURIComponent(logo.substring(logo.lastIndexOf('/') + 1))
-          utils.downloadToFile(logoPath, 'app/public/images/' + logo)
-        }
-        const logoImageTag = '<img class="navbar-brand navbar-logo" src="/public/images/' + logo + '">'
-        replace({
-          regex: /<img class="navbar-brand navbar-logo"(.*?)>/,
-          replacement: logoImageTag,
-          paths: ['app/index.html'],
-          recursive: false,
-          silent: true
-        })
-      }
-      if (config.get('application.theme')) {
-        const themeCss = 'bower_components/bootswatch/' + config.get('application.theme') + '/bootstrap.min.css'
-        replace({
-          regex: /bower_components\/bootswatch\/.*\/bootstrap\.min\.css/,
-          replacement: themeCss,
-          paths: ['app/index.html'],
-          recursive: false,
-          silent: true
-        })
-      }
-    })
-  }
-
   if (!this.server) {
     models.sequelize.sync({ force: true }).then(function () {
       datacreator()
@@ -287,6 +246,65 @@ exports.start = function (readyCallback) {
 
     populateIndexTemplate()
   }
+}
+
+function registerWebsocketEvents () {
+  io.on('connection', socket => {
+    if (firstConnectedSocket === null) {
+      socket.emit('server started')
+      firstConnectedSocket = socket.id
+    }
+
+    notifications.forEach(notification => {
+      socket.emit('challenge solved', notification)
+    })
+
+    socket.on('notification received', data => {
+      const i = notifications.findIndex(element => element.flag === data)
+      if (i > -1) {
+        notifications.splice(i, 1)
+      }
+    })
+  })
+}
+
+function populateIndexTemplate () {
+  fs.copy('app/index.template.html', 'app/index.html', { overwrite: true }, () => {
+    if (config.get('application.logo')) {
+      let logo = config.get('application.logo')
+      if (utils.startsWith(logo, 'http')) {
+        const logoPath = logo
+        logo = decodeURIComponent(logo.substring(logo.lastIndexOf('/') + 1))
+        utils.downloadToFile(logoPath, 'app/public/images/' + logo)
+      }
+      const logoImageTag = '<img class="navbar-brand navbar-logo" src="/public/images/' + logo + '">'
+      replaceLogo(logoImageTag)
+    }
+    if (config.get('application.theme')) {
+      replaceTheme()
+    }
+  })
+}
+
+function replaceLogo (logoImageTag) {
+  replace({
+    regex: /<img class="navbar-brand navbar-logo"(.*?)>/,
+    replacement: logoImageTag,
+    paths: ['app/index.html'],
+    recursive: false,
+    silent: true
+  })
+}
+
+function replaceTheme () {
+  const themeCss = 'node_modules/bootswatch/' + config.get('application.theme') + '/bootstrap.min.css'
+  replace({
+    regex: /node_modules\/bootswatch\/.*\/bootstrap\.min\.css/,
+    replacement: themeCss,
+    paths: ['app/index.html'],
+    recursive: false,
+    silent: true
+  })
 }
 
 exports.close = function (exitCode) {

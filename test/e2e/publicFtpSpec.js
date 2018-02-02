@@ -14,9 +14,9 @@ describe('/ftp', () => {
       browser.driver.findElements(by.id('stacktrace')).then(elements => {
         expect(!!elements.length).toBe(true)
       })
-
-      protractor.expect.challengeSolved({challenge: 'Error Handling'})
     })
+
+    protractor.expect.challengeSolved({challenge: 'Error Handling'})
   })
 
   describe('challenge "forgottenBackup"', () => {
@@ -41,5 +41,13 @@ describe('/ftp', () => {
     })
 
     protractor.expect.challengeSolved({challenge: 'Easter Egg Tier 1'})
+  })
+
+  describe('challenge "misplacedSiemFileChallenge"', () => {
+    it('should be able to access file /ftp/suspicious_errors.yml with poison null byte attack', () => {
+      browser.driver.get(browser.baseUrl + '/ftp/suspicious_errors.yml%2500.md')
+    })
+
+    protractor.expect.challengeSolved({challenge: 'Misplaced Signature File'})
   })
 })

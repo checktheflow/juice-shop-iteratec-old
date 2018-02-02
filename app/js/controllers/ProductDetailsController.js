@@ -10,13 +10,6 @@ angular.module('juiceShop').controller('ProductDetailsController', [
   function ($scope, $sce, $q, $uibModal, productService, productReviewService, userService, id) {
     'use strict'
 
-    productService.get(id).then(function (product) {
-      $scope.product = product
-      $scope.product.description = $sce.trustAsHtml($scope.product.description)
-    }).catch(function (err) {
-      console.log(err)
-    })
-
     $q.all([
       productService.get(id),
       productReviewService.get(id),
@@ -30,10 +23,10 @@ angular.module('juiceShop').controller('ProductDetailsController', [
       $scope.product.description = $sce.trustAsHtml($scope.product.description)
       $scope.productReviews = reviews
 
-      if (user === undefined || user.email === undefined) {
-        $scope.author = 'Anonymous'
-      } else {
+      if (user && user.email) {
         $scope.author = user.email
+      } else {
+        $scope.author = 'Anonymous'
       }
     }).catch(function (err) {
       console.log(err)

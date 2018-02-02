@@ -9,9 +9,9 @@ exports = module.exports = function applyCoupon () {
     coupon = discount ? coupon : null
     models.Basket.findById(id).then(basket => {
       if (basket) {
-        basket.updateAttributes({ coupon: coupon }).then(() => {
+        basket.updateAttributes({ coupon }).then(() => {
           if (discount) {
-            res.json({ discount: discount })
+            res.json({ discount })
           } else {
             res.status(404).send('Invalid coupon.')
           }

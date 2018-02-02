@@ -9,7 +9,7 @@ const users = datacache.users
 const products = datacache.products
 
 module.exports = () => {
-  // TODO Wrap enttire datacreator into promise to avoid race condition with websocket registration for progress restore
+  // TODO Wrap entire datacreator into promise to avoid race condition with websocket registration for progress restore
   createChallenges()
   createUsers()
   createRandomFakeUsers()
@@ -93,7 +93,7 @@ function createChallenges () {
   models.Challenge.create({
     name: 'XSS Tier 1',
     category: 'XSS',
-    description: 'Perform a <i>reflected</i> XSS attack with <code>&lt;script&gt;alert("XSS1")&lt;/script&gt;</code>.',
+    description: 'Perform a <i>reflected</i> XSS attack with <code>&lt;script&gt;alert("XSS")&lt;/script&gt;</code>.',
     difficulty: 1,
     country: 'Germany',
     countryCode: 'DE',
@@ -106,7 +106,7 @@ function createChallenges () {
   models.Challenge.create({
     name: 'XSS Tier 2',
     category: 'XSS',
-    description: 'Perform a <i>persisted</i> XSS attack with <code>&lt;script&gt;alert("XSS2")&lt;/script&gt;</code> bypassing a <i>client-side</i> security mechanism.',
+    description: 'Perform a <i>persisted</i> XSS attack with <code>&lt;script&gt;alert("XSS")&lt;/script&gt;</code> bypassing a <i>client-side</i> security mechanism.',
     difficulty: 3,
     country: 'Uruguay',
     countryCode: 'UY',
@@ -119,7 +119,7 @@ function createChallenges () {
   models.Challenge.create({
     name: 'XSS Tier 4',
     category: 'XSS',
-    description: 'Perform a <i>persisted</i> XSS attack with <code>&lt;script&gt;alert("XSS4")&lt;/script&gt;</code> bypassing a <i>server-side</i> security mechanism.',
+    description: 'Perform a <i>persisted</i> XSS attack with <code>&lt;script&gt;alert("XSS")&lt;/script&gt;</code> bypassing a <i>server-side</i> security mechanism.',
     difficulty: 4,
     country: 'Myanmar',
     countryCode: 'MM',
@@ -132,7 +132,7 @@ function createChallenges () {
   models.Challenge.create({
     name: 'XSS Tier 3',
     category: 'XSS',
-    description: 'Perform a <i>persisted</i> XSS attack with <code>&lt;script&gt;alert("XSS3")&lt;/script&gt;</code> without using the frontend application at all.',
+    description: 'Perform a <i>persisted</i> XSS attack with <code>&lt;script&gt;alert("XSS")&lt;/script&gt;</code> without using the frontend application at all.',
     difficulty: 3,
     country: 'Costa Rica',
     countryCode: 'CR',
@@ -195,7 +195,20 @@ function createChallenges () {
     challenges.forgedFeedbackChallenge = challenge
   })
   models.Challenge.create({
-    name: 'Redirects',
+    name: 'Redirects Tier 1',
+    category: 'Forgotten Content',
+    description: 'Let us redirect you to a donation site that went out of business.',
+    difficulty: 1,
+    country: 'Korea (Democratic People\'s Republic of)',
+    countryCode: 'KP',
+    hint: addHint('We might have failed to take this out of our code properly.'),
+    hintUrl: addHint('https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part2/forgotten-content.html#let-us-redirect-you-to-a-donation-site-that-went-out-of-business'),
+    solved: false
+  }).then(challenge => {
+    challenges.redirectGratipayChallenge = challenge
+  })
+  models.Challenge.create({
+    name: 'Redirects Tier 2',
     category: 'Weak Security Mechanisms',
     description: 'Wherever you go, there you are.',
     difficulty: 4,
@@ -432,7 +445,7 @@ function createChallenges () {
     name: 'Extra Language',
     category: 'Forgotten Content',
     description: 'Retrieve the language file that never made it into production.',
-    difficulty: 4,
+    difficulty: 5,
     country: 'Saudi Arabia',
     countryCode: 'SA',
     hint: addHint('Brute force is not the only option for this challenge, but a perfectly viable one.'),
@@ -509,7 +522,7 @@ function createChallenges () {
   models.Challenge.create({
     name: 'Premium Paywall',
     category: 'Cryptographic Issues',
-    description: '<i class="fa fa-diamond"></i><i class="fa fa-diamond"></i><i class="fa fa-diamond"></i><i class="fa fa-diamond"></i><i class="fa fa-diamond"></i><!--R9U8AvGlBbjhHXHW422jxVL2hoLBr8wflIAQ8d/jlERpKnrNlMErs1JfgT9EK/kzTtdb1GPhuWAz3i2HhomhaFMxvg4na+tvTi+8DoQoeqZH1KADoM2NJ7UOKc14b54cdRTXiYV7yFUzbPjjPVOWZFSmDcG6z+jQIPZtJuJ/tQc=--> <a href="/redirect?to=https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm" target="_blank" class="btn btn-danger btn-xs"><i class="fa fa-btc fa-sm"></i> Unlock Premium Challenge</a> to access exclusive content.',
+    description: '<i class="far fa-gem"></i><i class="far fa-gem"></i><i class="far fa-gem"></i><i class="far fa-gem"></i><i class="far fa-gem"></i><!--i0ycvJyZ+WoHTEIjAatNFK5A8r8GxRbwOLC2OuXHVsZcKkEc3lRgc58KjEKn2Byj8Fg3A3ai5yahQANdWL/5j5k3E3qHTjm93tuenE0YlauCdy+7tGkFvo5OltIhiXSWt1SiICecyghFZ8ca/aKtHQ==--> <a href="/redirect?to=https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm" target="_blank" class="btn btn-danger btn-xs"><i class="fab fa-btc fa-sm"></i> Unlock Premium Challenge</a> to access exclusive content.',
     difficulty: 5,
     country: 'Angola',
     countryCode: 'AO',
@@ -576,6 +589,7 @@ function createChallenges () {
     category: 'NoSQL Injection',
     description: 'Let the server sleep for some time. (It has done more than enough hard work for you)',
     hint: addHint('This challenge is essentially a stripped-down Denial of Service (DoS) attack.'),
+    hintUrl: addHint('https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part2/nosqli.html#let-the-server-sleep-for-some-time'),
     difficulty: 3,
     country: 'Moldova',
     countryCode: 'MD',
@@ -588,6 +602,7 @@ function createChallenges () {
     category: 'NoSQL Injection',
     description: 'Update multiple product reviews at the same time.',
     hint: addHint('Take a close look on how the equivalent of UPDATE-statements in MongoDB work.'),
+    hintUrl: addHint('https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part2/nosqli.html#update-multiple-product-reviews-at-the-same-time'),
     difficulty: 3,
     country: 'Czech Republic',
     countryCode: 'CZ',
@@ -596,26 +611,26 @@ function createChallenges () {
     challenges.noSqlInjectionChallenge = challenge
   })
   models.Challenge.create({
-    name: 'Retrieve Blueprint',
-    category: 'Forgotten Content',
-    description: 'Deprive the shop of earnings by downloading the blueprint for one of its products.',
-    difficulty: 3,
-    country: 'Georgia',
-    countryCode: 'GE',
-    hint: addHint('Property \'fileForRetrieveBlueprintChallenge\' is missing in your Juice Shop config! Workaround: Try finding \'JuiceShop.stl\' somewhere. Be aware that with v5.0 this workaround will be removed!'),
-    hintUrl: addHint('https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part2/forgotten-content.html#deprive-the-shop-of-earnings-by-downloading-the-blueprint-for-one-of-its-products'),
-    solved: false
+      name: 'Retrieve Blueprint',
+      category: 'Forgotten Content',
+      description: 'Deprive the shop of earnings by downloading the blueprint for one of its products.',
+      difficulty: 3,
+      country: 'Georgia',
+      countryCode: 'GE',
+      hintUrl: addHint(
+          'https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part2/forgotten-content.html#deprive-the-shop-of-earnings-by-downloading-the-blueprint-for-one-of-its-products'
+      ),
+      solved: false,
   }).then(challenge => {
-    challenges.retrieveBlueprintChallenge = challenge
+      challenges.retrieveBlueprintChallenge = challenge;
 
-    // TODO remove this workaround default before v6.0 release
-    for (const product of config.get('products')) {
-      if (product.fileForRetrieveBlueprintChallenge) {
-        models.sequelize.query('UPDATE Challenges SET hint = \'The product you might want to give a closer look is the ' + product.name + '.\' WHERE id = ' + challenge.id)
-        break
+      for (const product of config.get('products')) {
+          if (product.fileForRetrieveBlueprintChallenge) {
+              models.sequelize.query("UPDATE Challenges SET hint = 'The product you might want to give a closer look is the " + product.name + ".' WHERE id = " + challenge.id);
+              break;
+          }
       }
-    }
-  })
+  });
   models.Challenge.create({
     name: 'Typosquatting Tier 1',
     category: 'Vulnerable Component',
@@ -667,6 +682,84 @@ function createChallenges () {
     solved: false
   }).then(challenge => {
     challenges.jwtTier2Challenge = challenge
+  })
+  models.Challenge.create({
+    name: 'Misplaced Signature File',
+    category: 'Forgotten Content',
+    description: 'Access a misplaced <a href="https://github.com/Neo23x0/sigma">SIEM signature</a> file.',
+    difficulty: 3,
+    country: 'Senegal',
+    countryCode: 'SN',
+    hint: addHint('You need to trick a security mechanism into thinking that the file you want has a valid file type.'),
+    hintUrl: addHint('https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part2/forgotten-content.html#access-a-misplaced-siem-signature-file'),
+    solved: false
+  }).then(challenge => {
+    challenges.misplacedSignatureFileChallenge = challenge
+  })
+  models.Challenge.create({
+    name: 'Deprecated Interface',
+    category: 'Forgotten Content',
+    description: 'Use a deprecated B2B interface that was not properly shut down.',
+    difficulty: 1,
+    country: 'New Zealand',
+    countryCode: 'NZ',
+    hint: addHint('The developers who disabled the interface think they could go invisible by just closing their eyes.'),
+    hintUrl: addHint('https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part2/forgotten-content.html#use-a-deprecated-b2b-interface-that-was-not-properly-shut-down'),
+    solved: false
+  }).then(challenge => {
+    challenges.deprecatedInterfaceChallenge = challenge
+  })
+  models.Challenge.create({
+    name: 'XXE Tier 1',
+    category: 'XXE',
+    description: 'Retrieve the content of <code>C:\\Windows\\system.ini</code> or <code>/etc/passwd</code> from the server.',
+    difficulty: 3,
+    country: 'Mongolia',
+    countryCode: 'MN',
+    hint: addHint('The leverage point for this challenge is the deprecated B2B interface.'),
+    hintUrl: addHint('https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part2/xxe.html#retrieve-the-content-of-cwindowssystemini-or-etcpasswd-from-the-server'),
+    solved: false
+  }).then(challenge => {
+    challenges.xxeFileDisclosureChallenge = challenge
+  })
+  models.Challenge.create({
+    name: 'XXE Tier 2',
+    category: 'XXE',
+    description: 'Give the server something to chew on for quite a while.',
+    difficulty: 4,
+    country: 'Nepal',
+    countryCode: 'NP',
+    hint: addHint('It is not as easy as sending a large amount of data directly to the deprecated B2B interface.'),
+    hintUrl: addHint('https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part2/xxe.html#give-the-server-something-to-chew-on-for-quite-a-while'),
+    solved: false
+  }).then(challenge => {
+    challenges.xxeDosChallenge = challenge
+  })
+  models.Challenge.create({
+    name: 'RCE Tier 1',
+    category: 'Deserialization',
+    description: 'Perform a Remote Code Execution that would keep a less hardened application busy <em>forever</em>.',
+    difficulty: 5,
+    country: 'Morocco',
+    countryCode: 'MA',
+    hint: addHint('The feature you need to exploit for this challenge is not directly advertised anywhere.'),
+    hintUrl: addHint('https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part2/deserialization.html#perform-a-remote-code-execution-that-would-keep-a-less-hardened-application-busy-forever'),
+    solved: false
+  }).then(challenge => {
+    challenges.rceChallenge = challenge
+  })
+  models.Challenge.create({
+    name: 'RCE Tier 2',
+    category: 'Deserialization',
+    description: 'Perform a Remote Code Execution that occupies the server for a while without using infinite loops.',
+    difficulty: 5,
+    country: 'Iraq',
+    countryCode: 'IQ',
+    hint: addHint('Your attack payload must not trigger the protection againt too many iterations.'),
+    hintUrl: addHint('https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part2/deserialization.html#perform-a-remote-code-execution-that-occupies-the-server-for-a-while-without-using-infinite-loops'),
+    solved: false
+  }).then(challenge => {
+    challenges.rceOccupyChallenge = challenge
   })
 }
 
@@ -749,6 +842,10 @@ function createProducts () {
     } else if (product.useForProductTamperingChallenge) {
       description += ' <a href="https://www.owasp.org/index.php/O-Saft" target="_blank">More...</a>'
     } else if (product.fileForRetrieveBlueprintChallenge) {
+      if (datacache.retrieveBlueprintChallengeFile) {
+        console.error('Cannot use ' + product.fileForRetrieveBlueprintChallenge + ' when ' + datacache.retrieveBlueprintChallengeFile + ' is already being used for the Retrieve Blueprint Challenge.')
+        process.exit(1)
+      }
       let blueprint = product.fileForRetrieveBlueprintChallenge
       if (utils.startsWith(blueprint, 'http')) {
         const blueprintUrl = blueprint
@@ -772,9 +869,17 @@ function createProducts () {
     }).then(product => {
       softDeleteIfConfigured(product)
       if (product.description.match(/Seasonal special offer! Limited availability!/)) {
+        if (products.christmasSpecial) {
+          console.error('Cannot use ' + product.name + ' when ' + products.christmasSpecial.name + ' is already being used for the Christmas Special Challenge.')
+          process.exit(1)
+        }
         products.christmasSpecial = product
         models.sequelize.query('UPDATE Products SET deletedAt = \'2014-12-27 00:00:00.000 +00:00\' WHERE id = ' + product.id)
       } else if (product.description.match(/a href="https:\/\/www\.owasp\.org\/index\.php\/O-Saft"/)) {
+        if (products.osaft) {
+          console.error('Cannot use ' + product.name + ' when ' + products.osaft.name + ' is already being used for the Product Tampering Challenge.')
+          process.exit(1)
+        }
         products.osaft = product
         if (product.deletedAt) { // undo delete to be consistent about corresponding challenge difficulty
           models.sequelize.query('UPDATE Products SET deletedAt = null WHERE id = ' + product.id)
@@ -796,10 +901,6 @@ function createProducts () {
         )
       }
     })
-  }
-
-  if (!datacache.retrieveBlueprintChallengeFile) { // TODO remove this workaround default before v6.0 release
-    datacache.retrieveBlueprintChallengeFile = 'JuiceShop.stl'
   }
 }
 
